@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
+Route::get('view-pharmacie', [PharmacieController::class, 'index']);
+Route::get('view-medicament', [MedicamentController::class, 'index']);
 
 Route::middleware('auth:sanctum')->group(function () {
 
@@ -28,13 +30,13 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::post('store-pharmacie', [PharmacieController::class, 'store']);
-    Route::get('view-pharmacie', [PharmacieController::class, 'index']);
+    
     Route::get('edit-pharmacie/{id}', [PharmacieController::class, 'edit']);
     Route::put('update-pharmacie/{id}', [PharmacieController::class, 'update']);
     Route::delete('delete-pharmacie/{id}', [PharmacieController::class, 'delete']);
 
     Route::post('store-medicament', [MedicamentController::class, 'store']);
-    Route::get('view-medicament', [MedicamentController::class, 'index']);
+    
     Route::get('edit-medicament/{id}', [MedicamentController::class, 'edit']);
     Route::put('update-medicament/{id}', [MedicamentController::class, 'update']);
     Route::delete('delete-medicament/{id}', [MedicamentController::class, 'delete']);
