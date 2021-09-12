@@ -34,6 +34,7 @@ class MedicamentController extends Controller
             ]);
         } else {
             $medicament = new Medicament();
+            $medicament->sous_sous_therapie_id = $request->input('sous_sous_therapie_id');
             $medicament->medicament_nom = $request->input('medicament_nom');
             $medicament->medicament_categorie = $request->input('medicament_categorie');
             $medicament->medicament_reference = $request->input('medicament_reference');
@@ -80,6 +81,7 @@ class MedicamentController extends Controller
         } else {
             $medicament = Medicament::find($id);
             if ($medicament) {
+                $medicament->sous_sous_therapie_id = $request->input('sous_sous_therapie_id');
                 $medicament->medicament_nom = $request->input('medicament_nom');
                 $medicament->medicament_categorie = $request->input('medicament_categorie');
                 $medicament->medicament_reference = $request->input('medicament_reference');

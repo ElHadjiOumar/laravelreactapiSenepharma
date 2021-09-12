@@ -15,6 +15,7 @@ class CreateMedicamentTable extends Migration
     {
         Schema::create('medicament', function (Blueprint $table) {
             $table->id();
+            $table->integer("sous_sous_therapie_id");
             $table->string('medicament_nom')->nullable();
             $table->string('medicament_categorie')->nullable();
             $table->string('medicament_reference')->nullable();
