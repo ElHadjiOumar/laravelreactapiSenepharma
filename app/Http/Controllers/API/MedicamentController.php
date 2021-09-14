@@ -128,7 +128,7 @@ class MedicamentController extends Controller
         $query = Medicament::query();
         if($s = $request->input('s')){
             $query->whereRaw("medicament_nom LIKE '%". $s ."%'")
-                orWhereRaw("medicament_reference LIKE '%". $s ."%'");
+                ->orWhereRaw("medicament_reference LIKE '%". $s ."%'");
         }
         return $query->get();
 
