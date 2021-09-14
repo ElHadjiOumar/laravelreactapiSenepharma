@@ -116,4 +116,21 @@ class MedicamentController extends Controller
             ]);
         }
     }
+    public function searchByName($medicament_nom){
+        $result = Medicament::where("medicament_nom","LIKE","%".$medicament_nom."%")->get();
+        return response()->json([
+            'status' => 200,
+            'medicament' => $result,
+        ]);
+    }
+    public function searchByAll(Request $request){
+
+        $query = Medicament::query();
+        if($s = $request->input('s')){
+            $query->whereRaw("medicament_nom LIKE '%". $s ."%'")
+                orWhereRaw("medicament_reference LIKE '%". $s ."%'");
+        }
+        return $query->get();
+
+    }
 }
