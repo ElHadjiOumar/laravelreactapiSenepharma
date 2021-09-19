@@ -13,5 +13,7 @@ class Pharmacie extends Model
         'pharmacie_nom',
         'pharmacie_adresse',
         'pharmacie_numero',
+        'longitude',
+        'lattitude',
     ];
 }

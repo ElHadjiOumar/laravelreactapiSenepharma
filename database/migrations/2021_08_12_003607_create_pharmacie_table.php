@@ -18,6 +18,8 @@ class CreatePharmacieTable extends Migration
             $table->string('pharmacie_nom')->nullable();
             $table->string('pharmacie_adresse')->nullable();
             $table->string('pharmacie_numero')->nullable();
+            $table->double('longitude')->nullable();
+            $table->double('lattitude')->nullable();
             $table->timestamps();
         });
     }

@@ -12,5 +12,6 @@ class Therapie extends Model
     protected $fillable = [
         'nom',
         'description',
+        'status',
     ];
 }

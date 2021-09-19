@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Sous_sous_therapie;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,8 +16,11 @@ class Medicament extends Model
         'medicament_categorie',
         'medicament_reference',
         'medicament_prix',
+        'image',
+        'status',
     ];
 
+    protected $with = ['sous_sous_therapie'];
     public function sous_sous_therapie()
     {
         return $this->belongsTo(Sous_sous_therapie::class, 'sous_sous_therapie_id', 'id');

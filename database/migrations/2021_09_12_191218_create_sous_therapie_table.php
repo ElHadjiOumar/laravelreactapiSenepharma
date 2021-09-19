@@ -18,6 +18,7 @@ class CreateSousTherapieTable extends Migration
             $table->integer("therapie_id");
             $table->string("nom");
             $table->string("description");
+            $table->tinyInteger('status')->default('0');
             $table->timestamps();
         });
     }

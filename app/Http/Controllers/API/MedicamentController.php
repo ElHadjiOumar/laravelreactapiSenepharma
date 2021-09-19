@@ -39,6 +39,7 @@ class MedicamentController extends Controller
             $medicament->medicament_categorie = $request->input('medicament_categorie');
             $medicament->medicament_reference = $request->input('medicament_reference');
             $medicament->medicament_prix = $request->input('medicament_prix');
+            $medicament->status = $request->input('status') == true ? '1' : '0';
 
             $medicament->save();
             return response()->json([
@@ -86,6 +87,7 @@ class MedicamentController extends Controller
                 $medicament->medicament_categorie = $request->input('medicament_categorie');
                 $medicament->medicament_reference = $request->input('medicament_reference');
                 $medicament->medicament_prix = $request->input('medicament_prix');
+                $medicament->status = $request->input('status') == true ? '1' : '0';
 
                 $medicament->save();
                 return response()->json([

@@ -37,6 +37,8 @@ class PharmacieController extends Controller
             $pharmacie->pharmacie_nom = $request->input('pharmacie_nom');
             $pharmacie->pharmacie_adresse = $request->input('pharmacie_adresse');
             $pharmacie->pharmacie_numero = $request->input('pharmacie_numero');
+            $pharmacie->longitude = $request->input('longitude');
+            $pharmacie->lattitude = $request->input('lattitude');
 
             $pharmacie->save();
             return response()->json([
@@ -81,6 +83,8 @@ class PharmacieController extends Controller
                 $pharmacie->pharmacie_nom = $request->input('pharmacie_nom');
                 $pharmacie->pharmacie_adresse = $request->input('pharmacie_adresse');
                 $pharmacie->pharmacie_numero = $request->input('pharmacie_numero');
+                $pharmacie->longitude = $request->input('longitude');
+                $pharmacie->lattitude = $request->input('lattitude');
 
                 $pharmacie->save();
                 return response()->json([

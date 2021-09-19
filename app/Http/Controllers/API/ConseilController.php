@@ -50,12 +50,6 @@ class ConseilController extends Controller
 
     public function update(Request $request, $id)
     {
-
-        return response()->json([
-            'status' => 422,
-            'errors' => $validator->messages(),
-        ]);
-
         $conseil = Conseil::find($id);
         if ($conseil) {
             $conseil->titre = $request->input('titre');

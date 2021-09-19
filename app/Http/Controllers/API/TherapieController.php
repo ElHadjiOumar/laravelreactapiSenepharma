@@ -16,6 +16,14 @@ class TherapieController extends Controller
             'therapie' => $therapie,
         ]);
     }
+    public function allTherapie(Request $request)
+    {
+        $therapie = Therapie::where('status', '0')->get();
+        return response()->json([
+            'status' => 200,
+            'therapie' => $therapie,
+        ]);
+    }
 
     public function store(Request $request)
     {
@@ -50,10 +58,6 @@ class TherapieController extends Controller
     public function update(Request $request, $id)
     {
 
-        return response()->json([
-            'status' => 422,
-            'errors' => $validator->messages(),
-        ]);
 
         $therapie = Therapie::find($id);
         if ($therapie) {
