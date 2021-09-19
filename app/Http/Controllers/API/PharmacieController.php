@@ -115,4 +115,12 @@ class PharmacieController extends Controller
             ]);
         }
     }
+
+   public function searchByName($pharmacie_nom){
+    $result = Pharmacie::where("pharmacie_nom","LIKE","%".$pharmacie_nom."%")->get();
+    return response()->json([
+        'status' => 200,
+        'medicament' => $result,
+    ]);
+    }
 }

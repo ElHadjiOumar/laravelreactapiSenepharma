@@ -49,11 +49,15 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('edit-pharmacie/{id}', [PharmacieController::class, 'edit']);
     Route::put('update-pharmacie/{id}', [PharmacieController::class, 'update']);
     Route::delete('delete-pharmacie/{id}', [PharmacieController::class, 'delete']);
+    //Route::delete('delete-pharmacie/{id}', [PharmacieController::class, 'delete']);
+    Route::get('search-pharmacie/{pharmacie_nom}', [PharmacieController::class, 'searchByName']);
 
     Route::post('store-medicament', [MedicamentController::class, 'store']);
     Route::get('edit-medicament/{id}', [MedicamentController::class, 'edit']);
     Route::put('update-medicament/{id}', [MedicamentController::class, 'update']);
     Route::delete('delete-medicament/{id}', [MedicamentController::class, 'delete']);
+    Route::get('search-medicament/{nom_medicament}', [MedicamentController::class, 'searchByName']);
+    Route::get('search', [MedicamentController::class, 'searchByAll']);
 
     Route::post('store-conseil', [ConseilController::class, 'store']);
     Route::get('edit-conseil/{id}', [ConseilController::class, 'edit']);
