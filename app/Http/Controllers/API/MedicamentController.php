@@ -99,7 +99,7 @@ class MedicamentController extends Controller
             }
 
 
-            $medicament->save();
+            $medicament->update();
             return response()->json([
                 'status' => 200,
                 'message' => 'Medicament Modifiée avec Succes',
