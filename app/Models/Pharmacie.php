@@ -15,5 +15,9 @@ class Pharmacie extends Model
         'pharmacie_numero',
         'longitude',
         'lattitude',
+        'region',
+        'commune',
+        'department',
+        'status',
     ];
 }

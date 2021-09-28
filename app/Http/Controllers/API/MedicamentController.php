@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Medicament;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
 class MedicamentController extends Controller
@@ -26,11 +27,12 @@ class MedicamentController extends Controller
             'medicament_categorie' => 'required|max:191',
             'medicament_reference' => 'required|max:191',
             'medicament_prix' => 'required|max:191',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
         if ($validator->fails()) {
             return response()->json([
                 'status' => 400,
-                'validation_errors' => $validator->messages(),
+                'errors' => $validator->messages(),
             ]);
         } else {
             $medicament = new Medicament();
@@ -40,6 +42,13 @@ class MedicamentController extends Controller
             $medicament->medicament_reference = $request->input('medicament_reference');
             $medicament->medicament_prix = $request->input('medicament_prix');
             $medicament->status = $request->input('status') == true ? '1' : '0';
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $extension = $file->getClientOriginalExtension();
+                $filename = time() . '.' . $extension;
+                $file->move('uploads/medicament/', $filename);
+                $medicament->image = 'uploads/medicament/' . $filename;
+            }
 
             $medicament->save();
             return response()->json([
@@ -68,38 +77,38 @@ class MedicamentController extends Controller
 
     public function update(Request $request, $id)
     {
-        $validator = Validator::make($request->all(), [
-            'medicament_nom' => 'required|max:191',
-            'medicament_categorie' => 'required|max:191',
-            'medicament_reference' => 'required|max:191',
-            'medicament_prix' => 'required|max:191',
-        ]);
-        if ($validator->fails()) {
+
+        $medicament = Medicament::find($id);
+        if ($medicament) {
+            $medicament->sous_sous_therapie_id = $request->input('sous_sous_therapie_id');
+            $medicament->medicament_nom = $request->input('medicament_nom');
+            $medicament->medicament_categorie = $request->input('medicament_categorie');
+            $medicament->medicament_reference = $request->input('medicament_reference');
+            $medicament->medicament_prix = $request->input('medicament_prix');
+            $medicament->status = $request->input('status') == true ? '1' : '0';
+            if ($request->hasFile('image')) {
+                $path = $medicament->image;
+                if (File::exists($path)) {
+                    File::delete($path);
+                }
+                $file = $request->file('image');
+                $extension = $file->getClientOriginalExtension();
+                $filename = time() . '.' . $extension;
+                $file->move('uploads/medicament/', $filename);
+                $medicament->image = 'uploads/medicament/' . $filename;
+            }
+
+
+            $medicament->save();
             return response()->json([
-                'status' => 422,
-                'errors' => $validator->messages(),
+                'status' => 200,
+                'message' => 'Medicament Modifiée avec Succes',
             ]);
         } else {
-            $medicament = Medicament::find($id);
-            if ($medicament) {
-                $medicament->sous_sous_therapie_id = $request->input('sous_sous_therapie_id');
-                $medicament->medicament_nom = $request->input('medicament_nom');
-                $medicament->medicament_categorie = $request->input('medicament_categorie');
-                $medicament->medicament_reference = $request->input('medicament_reference');
-                $medicament->medicament_prix = $request->input('medicament_prix');
-                $medicament->status = $request->input('status') == true ? '1' : '0';
-
-                $medicament->save();
-                return response()->json([
-                    'status' => 200,
-                    'message' => 'Medicament Modifiée avec Succes',
-                ]);
-            } else {
-                return response()->json([
-                    'status' => 404,
-                    'message' => 'Medicament Non Trouvée',
-                ]);
-            }
+            return response()->json([
+                'status' => 404,
+                'message' => 'Medicament Pas Modifié',
+            ]);
         }
     }
     public function delete($id)
@@ -118,21 +127,22 @@ class MedicamentController extends Controller
             ]);
         }
     }
-    public function searchByName($medicament_nom){
-        $result = Medicament::where("medicament_nom","LIKE","%".$medicament_nom."%")->get();
+    public function searchByName($medicament_nom)
+    {
+        $result = Medicament::where("medicament_nom", "LIKE", "%" . $medicament_nom . "%")->get();
         return response()->json([
             'status' => 200,
             'medicament' => $result,
         ]);
     }
-    public function searchByAll(Request $request){
+    public function searchByAll(Request $request)
+    {
 
         $query = Medicament::query();
-        if($s = $request->input('s')){
-            $query->whereRaw("medicament_nom LIKE '%". $s ."%'")
-                ->orWhereRaw("medicament_reference LIKE '%". $s ."%'");
+        if ($s = $request->input('s')) {
+            $query->whereRaw("medicament_nom LIKE '%" . $s . "%'")
+                ->orWhereRaw("medicament_reference LIKE '%" . $s . "%'");
         }
         return $query->get();
-
     }
 }

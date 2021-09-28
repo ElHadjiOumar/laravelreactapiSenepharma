@@ -39,6 +39,10 @@ class PharmacieController extends Controller
             $pharmacie->pharmacie_numero = $request->input('pharmacie_numero');
             $pharmacie->longitude = $request->input('longitude');
             $pharmacie->lattitude = $request->input('lattitude');
+            $pharmacie->region = $request->input('region');
+            $pharmacie->commune = $request->input('commune');
+            $pharmacie->department = $request->input('department');
+
 
             $pharmacie->save();
             return response()->json([
@@ -85,6 +89,10 @@ class PharmacieController extends Controller
                 $pharmacie->pharmacie_numero = $request->input('pharmacie_numero');
                 $pharmacie->longitude = $request->input('longitude');
                 $pharmacie->lattitude = $request->input('lattitude');
+                $pharmacie->region = $request->input('region');
+                $pharmacie->commune = $request->input('commune');
+                $pharmacie->department = $request->input('department');
+                $pharmacie->status = $request->input('status');
 
                 $pharmacie->save();
                 return response()->json([
@@ -116,11 +124,12 @@ class PharmacieController extends Controller
         }
     }
 
-   public function searchByName($pharmacie_nom){
-    $result = Pharmacie::where("pharmacie_nom","LIKE","%".$pharmacie_nom."%")->get();
-    return response()->json([
-        'status' => 200,
-        'medicament' => $result,
-    ]);
+    public function searchByName($pharmacie_nom)
+    {
+        $result = Pharmacie::where("pharmacie_nom", "LIKE", "%" . $pharmacie_nom . "%")->get();
+        return response()->json([
+            'status' => 200,
+            'medicament' => $result,
+        ]);
     }
 }

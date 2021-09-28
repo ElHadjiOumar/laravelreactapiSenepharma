@@ -16,8 +16,9 @@ class Medicament extends Model
         'medicament_categorie',
         'medicament_reference',
         'medicament_prix',
-        'image',
         'status',
+        'image',
+
     ];
 
     protected $with = ['sous_sous_therapie'];
