@@ -84,4 +84,13 @@ class ConseilController extends Controller
             ]);
         }
     }
+
+    public function searchByTitre($titre)
+    {
+        $result = Conseil::where("titre", "LIKE", "%" . $titre . "%")->get();
+        return response()->json([
+            'status' => 200,
+            'conseil' => $result,
+        ]);
+    }
 }

@@ -97,4 +97,12 @@ class SousSousTherapieController extends Controller
             ]);
         }
     }
+    public function searchByName($nom)
+    {
+        $result = Sous_sous_therapie::where("nom", "LIKE", "%" . $nom . "%")->get();
+        return response()->json([
+            'status' => 200,
+            'sous_sous_therapie' => $result,
+        ]);
+    }
 }

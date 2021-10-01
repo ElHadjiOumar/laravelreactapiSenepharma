@@ -63,21 +63,25 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('edit-conseil/{id}', [ConseilController::class, 'edit']);
     Route::put('update-conseil/{id}', [ConseilController::class, 'update']);
     Route::delete('delete-conseil/{id}', [ConseilController::class, 'delete']);
+    Route::get('search-conseil/{titre}', [ConseilController::class, 'searchByTitre']);
 
     Route::post('store-therapie', [TherapieController::class, 'store']);
     Route::get('edit-therapie/{id}', [TherapieController::class, 'edit']);
     Route::put('update-therapie/{id}', [TherapieController::class, 'update']);
     Route::delete('delete-therapie/{id}', [TherapieController::class, 'delete']);
+    Route::get('search-therapie/{nom}', [TherapieController::class, 'searchByName']);
 
     Route::post('store-sous-therapie', [SousTherapieController::class, 'store']);
     Route::get('edit-sous-therapie/{id}', [SousTherapieController::class, 'edit']);
     Route::put('update-sous-therapie/{id}', [SousTherapieController::class, 'update']);
     Route::delete('delete-sous-therapie/{id}', [SousTherapieController::class, 'delete']);
+    Route::get('search-sous-therapie/{nom}', [SousTherapieController::class, 'searchByName']);
 
     Route::post('store-sous-sous-therapie', [SousSousTherapieController::class, 'store']);
     Route::get('edit-sous-sous-therapie/{id}', [SousSousTherapieController::class, 'edit']);
     Route::put('update-sous-sous-therapie/{id}', [SousSousTherapieController::class, 'update']);
     Route::delete('delete-sous-sous-therapie/{id}', [SousSousTherapieController::class, 'delete']);
+    Route::get('search-sous-sous-therapie/{nom}', [SousSousTherapieController::class, 'searchByName']);
 
 
     Route::post('logout', [AuthController::class, 'logout']);

@@ -92,4 +92,13 @@ class TherapieController extends Controller
             ]);
         }
     }
+
+    public function searchByName($nom)
+    {
+        $result = Therapie::where("nom", "LIKE", "%" . $nom . "%")->get();
+        return response()->json([
+            'status' => 200,
+            'therapie' => $result,
+        ]);
+    }
 }
