@@ -20,6 +20,14 @@ class CreateMedicamentTable extends Migration
             $table->string('medicament_categorie')->nullable();
             $table->string('medicament_reference')->nullable();
             $table->string('medicament_prix')->nullable();
+            $table->string('DCI')->nullable();
+            $table->string('nom_commercial')->nullable();
+            $table->string('tableau')->nullable();
+            $table->string('forme')->nullable();
+            $table->string('dosage')->nullable();
+            $table->string('classe_therapeutique')->nullable();
+            $table->string('posologie')->nullable();
+
             $table->string('image')->nullable();
             $table->tinyInteger('status')->default('0');
             $table->timestamps();
