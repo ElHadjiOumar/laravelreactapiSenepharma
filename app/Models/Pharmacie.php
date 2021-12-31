@@ -19,5 +19,6 @@ class Pharmacie extends Model
         'commune',
         'department',
         'status',
+        'map_link',
     ];
 }

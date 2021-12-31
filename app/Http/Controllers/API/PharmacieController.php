@@ -42,6 +42,7 @@ class PharmacieController extends Controller
             $pharmacie->region = $request->input('region');
             $pharmacie->commune = $request->input('commune');
             $pharmacie->department = $request->input('department');
+            $pharmacie->map_link = $request->input('map_link');
 
 
             $pharmacie->save();
@@ -92,6 +93,7 @@ class PharmacieController extends Controller
                 $pharmacie->region = $request->input('region');
                 $pharmacie->commune = $request->input('commune');
                 $pharmacie->department = $request->input('department');
+                $pharmacie->map_link = $request->input('map_link');
                 $pharmacie->status = $request->input('status');
 
                 $pharmacie->save();

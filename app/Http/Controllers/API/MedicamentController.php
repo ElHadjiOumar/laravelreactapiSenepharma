@@ -21,27 +21,17 @@ class MedicamentController extends Controller
 
     public function store(Request $request)
     {
-
-        $validator = Validator::make($request->all(), [
-            'medicament_nom' => 'required|max:191',
-            'medicament_categorie' => 'required|max:191',
-            'medicament_reference' => 'required|max:191',
-            'medicament_prix' => 'required|max:191',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
-        if ($validator->fails()) {
-            return response()->json([
-                'status' => 400,
-                'errors' => $validator->messages(),
-            ]);
-        } else {
             $medicament = new Medicament();
-            $medicament->sous_sous_therapie_id = $request->input('sous_sous_therapie_id');
             $medicament->medicament_nom = $request->input('medicament_nom');
-            $medicament->medicament_categorie = $request->input('medicament_categorie');
-            $medicament->medicament_reference = $request->input('medicament_reference');
             $medicament->medicament_prix = $request->input('medicament_prix');
+            $medicament->DCI = $request->input('DCI');
+            $medicament->tableau = $request->input('tableau');
+            $medicament->forme = $request->input('forme');
+            $medicament->dosage = $request->input('dosage');
+            $medicament->classe_therapeutique = $request->input('classe_therapeutique');
+            $medicament->posologie = $request->input('posologie');
             $medicament->status = $request->input('status') == true ? '1' : '0';
+
             if ($request->hasFile('image')) {
                 $file = $request->file('image');
                 $extension = $file->getClientOriginalExtension();
@@ -55,7 +45,7 @@ class MedicamentController extends Controller
                 'status' => 200,
                 'message' => 'Medicament Ajoutez avec Succes',
             ]);
-        }
+        
     }
 
 
@@ -80,11 +70,14 @@ class MedicamentController extends Controller
 
         $medicament = Medicament::find($id);
         if ($medicament) {
-            $medicament->sous_sous_therapie_id = $request->input('sous_sous_therapie_id');
             $medicament->medicament_nom = $request->input('medicament_nom');
-            $medicament->medicament_categorie = $request->input('medicament_categorie');
-            $medicament->medicament_reference = $request->input('medicament_reference');
             $medicament->medicament_prix = $request->input('medicament_prix');
+            $medicament->DCI = $request->input('DCI');
+            $medicament->tableau = $request->input('tableau');
+            $medicament->forme = $request->input('forme');
+            $medicament->dosage = $request->input('dosage');
+            $medicament->classe_therapeutique = $request->input('classe_therapeutique');
+            $medicament->posologie = $request->input('posologie');
             $medicament->status = $request->input('status') == true ? '1' : '0';
             if ($request->hasFile('image')) {
                 $path = $medicament->image;
@@ -140,8 +133,7 @@ class MedicamentController extends Controller
 
         $query = Medicament::query();
         if ($s = $request->input('s')) {
-            $query->whereRaw("medicament_nom LIKE '%" . $s . "%'")
-                ->orWhereRaw("medicament_reference LIKE '%" . $s . "%'");
+            $query->whereRaw("medicament_nom LIKE '%" . $s . "%'");
         }
         return $query->get();
     }

@@ -7,8 +7,6 @@ use App\Http\Controllers\API\PharmacieController;
 use App\Http\Controllers\API\SousSousTherapieController;
 use App\Http\Controllers\API\SousTherapieController;
 use App\Http\Controllers\API\TherapieController;
-use App\Models\Sous_sous_therapie;
-use App\Models\Sous_therapie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,16 +25,8 @@ Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 Route::get('view-pharmacie', [PharmacieController::class, 'index']);
 Route::get('view-medicament', [MedicamentController::class, 'index']);
-//Route::get('medicament', [MedicamentController::class, 'render']);
-
 Route::get('view-conseil', [ConseilController::class, 'index']);
-Route::get('view-therapie', [TherapieController::class, 'index']);
-Route::get('all-therapie', [TherapieController::class, 'allTherapie']);
-Route::get('all-sous-therapie', [SousTherapieController::class, 'allTherapie']);
-Route::get('all-sous-sous-therapie', [SousSousTherapieController::class, 'allTherapie']);
-Route::get('view-sous-therapie', [SousTherapieController::class, 'index']);
-Route::get('sous-therapie/{id}', [SousTherapieController::class, 'render']);
-Route::get('view-sous-sous-therapie', [SousSousTherapieController::class, 'index']);
+
 
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -64,24 +54,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('update-conseil/{id}', [ConseilController::class, 'update']);
     Route::delete('delete-conseil/{id}', [ConseilController::class, 'delete']);
     Route::get('search-conseil/{titre}', [ConseilController::class, 'searchByTitre']);
-
-    Route::post('store-therapie', [TherapieController::class, 'store']);
-    Route::get('edit-therapie/{id}', [TherapieController::class, 'edit']);
-    Route::put('update-therapie/{id}', [TherapieController::class, 'update']);
-    Route::delete('delete-therapie/{id}', [TherapieController::class, 'delete']);
-    Route::get('search-therapie/{nom}', [TherapieController::class, 'searchByName']);
-
-    Route::post('store-sous-therapie', [SousTherapieController::class, 'store']);
-    Route::get('edit-sous-therapie/{id}', [SousTherapieController::class, 'edit']);
-    Route::put('update-sous-therapie/{id}', [SousTherapieController::class, 'update']);
-    Route::delete('delete-sous-therapie/{id}', [SousTherapieController::class, 'delete']);
-    Route::get('search-sous-therapie/{nom}', [SousTherapieController::class, 'searchByName']);
-
-    Route::post('store-sous-sous-therapie', [SousSousTherapieController::class, 'store']);
-    Route::get('edit-sous-sous-therapie/{id}', [SousSousTherapieController::class, 'edit']);
-    Route::put('update-sous-sous-therapie/{id}', [SousSousTherapieController::class, 'update']);
-    Route::delete('delete-sous-sous-therapie/{id}', [SousSousTherapieController::class, 'delete']);
-    Route::get('search-sous-sous-therapie/{nom}', [SousSousTherapieController::class, 'searchByName']);
 
 
     Route::post('logout', [AuthController::class, 'logout']);

@@ -23,6 +23,7 @@ class CreatePharmacieTable extends Migration
             $table->string('region')->nullable();
             $table->string('commune')->nullable();
             $table->string('department')->nullable();
+            $table->string('map_link')->nullable();
             $table->tinyInteger('status')->default('0');
             $table->timestamps();
         });
