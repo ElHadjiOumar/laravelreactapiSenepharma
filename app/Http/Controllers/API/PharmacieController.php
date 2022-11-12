@@ -131,7 +131,16 @@ class PharmacieController extends Controller
         $result = Pharmacie::where("pharmacie_nom", "LIKE", "%" . $pharmacie_nom . "%")->get();
         return response()->json([
             'status' => 200,
-            'medicament' => $result,
+            'pharmacie' => $result,
         ]);
+    }
+
+    public function listAll($sk, $tk){
+        $result = Pharmacie::offset($sk)->limit($tk)->get();
+        return response()->json([
+            'status' => 200,
+            'pharmacie' => $result,
+        ]);
+
     }
 }

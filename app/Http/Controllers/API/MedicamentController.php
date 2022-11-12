@@ -45,7 +45,7 @@ class MedicamentController extends Controller
                 'status' => 200,
                 'message' => 'Medicament Ajoutez avec Succes',
             ]);
-        
+
     }
 
 
@@ -136,5 +136,14 @@ class MedicamentController extends Controller
             $query->whereRaw("medicament_nom LIKE '%" . $s . "%'");
         }
         return $query->get();
+    }
+
+    public function listAll($sk, $tk){
+        $result = Medicament::offset($sk)->limit($tk)->get();
+        return response()->json([
+            'status' => 200,
+            'medicament' => $result,
+        ]);
+
     }
 }

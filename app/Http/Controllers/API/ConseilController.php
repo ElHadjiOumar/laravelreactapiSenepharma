@@ -93,4 +93,13 @@ class ConseilController extends Controller
             'conseil' => $result,
         ]);
     }
+
+    public function listAll($sk, $tk){
+        $result = Conseil::offset($sk)->limit($tk)->get();
+        return response()->json([
+            'status' => 200,
+            'conseil' => $result,
+        ]);
+
+    }
 }
