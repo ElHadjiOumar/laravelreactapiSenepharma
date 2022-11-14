@@ -138,8 +138,8 @@ class MedicamentController extends Controller
         return $query->get();
     }
 
-    public function listAll($sk, $tk){
-        $result = Medicament::offset($sk)->limit($tk)->get();
+    public function list_allMedicament($sk, $tk){
+        $result = Medicament::skip($sk)->take($tk)->get();
         return response()->json([
             'status' => 200,
             'medicament' => $result,

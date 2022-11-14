@@ -96,7 +96,7 @@ class ConseilController extends Controller
 
     public function list_allConseil($sk, $tk)
     {
-        $result = Conseil::offset($sk)->limit($tk)->get();
+        $result = Conseil::skip($sk)->take($tk)->get();
         return response()->json([
             'status' => 200,
             'conseil' => $result,
