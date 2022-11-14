@@ -135,7 +135,7 @@ class PharmacieController extends Controller
         ]);
     }
 
-    public function listAll($sk, $tk){
+    public function list_allPharmacie($sk, $tk){
         $result = Pharmacie::offset($sk)->limit($tk)->get();
         return response()->json([
             'status' => 200,
