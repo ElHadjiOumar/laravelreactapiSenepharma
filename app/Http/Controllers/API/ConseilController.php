@@ -94,7 +94,8 @@ class ConseilController extends Controller
         ]);
     }
 
-    public function listAll($sk, $tk){
+    public function listAll($sk, $tk)
+    {
         $result = Conseil::offset($sk)->limit($tk)->get();
         return response()->json([
             'status' => 200,

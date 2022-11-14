@@ -26,11 +26,11 @@ Route::post('login', [AuthController::class, 'login']);
 Route::get('view-pharmacie', [PharmacieController::class, 'index']);
 Route::get('view-medicament', [MedicamentController::class, 'index']);
 Route::get('view-conseil', [ConseilController::class, 'index']);
-Route::get('list_all/{sk,tk}', [PharmacieController::class, 'listAll']);
+Route::get('list_all/{sk}/{tk}', [PharmacieController::class, 'listAll']);
 Route::get('retriv', [PharmacieController::class, 'retrivAll']);
-Route::get('list_all/{sk,tk}', [MedicamentController::class, 'listAll']);
+Route::get('list_all/{sk}/{tk}', [MedicamentController::class, 'listAll']);
 Route::get('retriv', [MedicamentController::class, 'retrivAll']);
-Route::get('list_all/{sk,tk}', [ConseilController::class, 'listAll']);
+Route::get('list_all/{sk}/{tk}', [ConseilController::class, 'listAll']);
 Route::get('retriv', [ConseilController::class, 'retrivAll']);
 
 
