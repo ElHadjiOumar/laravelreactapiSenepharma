@@ -26,6 +26,12 @@ Route::post('login', [AuthController::class, 'login']);
 Route::get('view-pharmacie', [PharmacieController::class, 'index']);
 Route::get('view-medicament', [MedicamentController::class, 'index']);
 Route::get('view-conseil', [ConseilController::class, 'index']);
+Route::get('list_all/{sk,tk}', [PharmacieController::class, 'listAll']);
+Route::get('retriv', [PharmacieController::class, 'retrivAll']);
+Route::get('list_all/{sk,tk}', [MedicamentController::class, 'listAll']);
+Route::get('retriv', [MedicamentController::class, 'retrivAll']);
+Route::get('list_all/{sk,tk}', [ConseilController::class, 'listAll']);
+Route::get('retriv', [ConseilController::class, 'retrivAll']);
 
 
 
@@ -41,8 +47,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('delete-pharmacie/{id}', [PharmacieController::class, 'delete']);
     //Route::delete('delete-pharmacie/{id}', [PharmacieController::class, 'delete']);
     Route::get('search-pharmacie/{pharmacie_nom}', [PharmacieController::class, 'searchByName']);
-    Route::get('list_all/{sk,tk}', [PharmacieController::class, 'listAll']);
-    Route::get('retriv', [PharmacieController::class, 'retrivAll']);
+    /* Route::get('list_all/{sk,tk}', [PharmacieController::class, 'listAll']);
+    Route::get('retriv', [PharmacieController::class, 'retrivAll']); */
 
     Route::post('store-medicament', [MedicamentController::class, 'store']);
     Route::get('edit-medicament/{id}', [MedicamentController::class, 'edit']);
@@ -50,16 +56,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('delete-medicament/{id}', [MedicamentController::class, 'delete']);
     Route::get('search-medicament/{nom_medicament}', [MedicamentController::class, 'searchByName']);
     Route::get('search', [MedicamentController::class, 'searchByAll']);
-    Route::get('list_all/{sk,tk}', [MedicamentController::class, 'listAll']);
-    Route::get('retriv', [MedicamentController::class, 'retrivAll']);
+
 
     Route::post('store-conseil', [ConseilController::class, 'store']);
     Route::get('edit-conseil/{id}', [ConseilController::class, 'edit']);
     Route::put('update-conseil/{id}', [ConseilController::class, 'update']);
     Route::delete('delete-conseil/{id}', [ConseilController::class, 'delete']);
     Route::get('search-conseil/{titre}', [ConseilController::class, 'searchByTitre']);
-    Route::get('list_all/{sk,tk}', [ConseilController::class, 'listAll']);
-    Route::get('retriv', [ConseilController::class, 'retrivAll']);
+
 
 
     Route::post('logout', [AuthController::class, 'logout']);
