@@ -135,6 +135,51 @@ class PharmacieController extends Controller
         ]);
     }
 
+    public function searchByDep($department)
+    {
+        $result = Pharmacie::where("department", "LIKE", "%" . $department . "%")->get();
+        return response()->json([
+            'status' => 200,
+            'pharmacie' => $result,
+        ]);
+    }
+
+    public function searchByCommune($commune)
+    {
+        $result = Pharmacie::where("commune", "LIKE", "%" . $commune . "%")->get();
+        return response()->json([
+            'status' => 200,
+            'pharmacie' => $result,
+        ]);
+    }
+
+    public function searchByRegion($region)
+    {
+        $result = Pharmacie::where("region", "LIKE", "%" . $region . "%")->get();
+        return response()->json([
+            'status' => 200,
+            'pharmacie' => $result,
+        ]);
+    }
+
+    public function searchByNum($pharmacie_numero)
+    {
+        $result = Pharmacie::where("pharmacie_numero", "LIKE", "%" . $pharmacie_numero . "%")->get();
+        return response()->json([
+            'status' => 200,
+            'pharmacie' => $result,
+        ]);
+    }
+
+    public function searchByAdd($pharmacie_adresse)
+    {
+        $result = Pharmacie::where("pharmacie_adresse", "LIKE", "%" . $pharmacie_adresse . "%")->get();
+        return response()->json([
+            'status' => 200,
+            'pharmacie' => $result,
+        ]);
+    }
+
     public function list_allPharmacie($sk, $tk){
         $result = Pharmacie::skip($sk)->take($tk)->get();
         return response()->json([

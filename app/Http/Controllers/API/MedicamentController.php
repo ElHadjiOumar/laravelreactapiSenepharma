@@ -120,14 +120,62 @@ class MedicamentController extends Controller
             ]);
         }
     }
-    public function searchByName($medicament_nom)
+    public function searchByDci($DCI)
     {
-        $result = Medicament::where("medicament_nom", "LIKE", "%" . $medicament_nom . "%")->get();
+        $result = Medicament::where("DCI", "LIKE", "%" . $DCI . "%")->get();
         return response()->json([
             'status' => 200,
             'medicament' => $result,
         ]);
     }
+
+    public function searchByTableau($tableau)
+    {
+        $result = Medicament::where("tableau", "LIKE", "%" . $tableau . "%")->get();
+        return response()->json([
+            'status' => 200,
+            'medicament' => $result,
+        ]);
+    }
+
+    public function searchByForme($forme)
+    {
+        $result = Medicament::where("forme", "LIKE", "%" . $forme . "%")->get();
+        return response()->json([
+            'status' => 200,
+            'medicament' => $result,
+        ]);
+    }
+
+    public function searchByDosage($dosage)
+    {
+        $result = Medicament::where("dosage", "LIKE", "%" . $dosage . "%")->get();
+        return response()->json([
+            'status' => 200,
+            'medicament' => $result,
+        ]);
+    }
+
+    public function searchByClasseT($classe_therapeutique)
+    {
+        $result = Medicament::where("classe_therapeutique", "LIKE", "%" . $classe_therapeutique . "%")->get();
+        return response()->json([
+            'status' => 200,
+            'medicament' => $result,
+        ]);
+    }
+
+    public function searchByPosologie($posologie)
+    {
+        $result = Medicament::where("posologie", "LIKE", "%" . $posologie . "%")->get();
+        return response()->json([
+            'status' => 200,
+            'medicament' => $result,
+        ]);
+    }
+
+
+
     public function searchByAll(Request $request)
     {
 

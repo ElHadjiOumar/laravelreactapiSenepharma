@@ -33,6 +33,24 @@ Route::get('retriv', [MedicamentController::class, 'retrivAll']);
 Route::get('list_allConseil/{sk}/{tk}', [ConseilController::class, 'list_allConseil']);
 Route::get('retriv', [ConseilController::class, 'retrivAll']);
 
+//  RECHERCHE POUR PHARMACIE***********************
+Route::get('search-pharmacie/{pharmacie_nom}', [PharmacieController::class, 'searchByName']);
+    Route::get('search-pharmacie/{pharmacie_adresse}', [PharmacieController::class, 'searchByAdd']);
+    Route::get('search-pharmacie/{pharmacie_numero}', [PharmacieController::class, 'searchByNum']);
+    Route::get('search-pharmacie/{region}', [PharmacieController::class, 'searchByRegion']);
+    Route::get('search-pharmacie/{commune}', [PharmacieController::class, 'searchByCommune']);
+    Route::get('search-pharmacie/{department}', [PharmacieController::class, 'searchByDep']);
+
+    //  RECHERCHE POUR MEDICAMENT***********************
+    Route::get('search-medicament/{nom_medicament}', [MedicamentController::class, 'searchByName']);
+    Route::get('search-medicament/{DCI}', [MedicamentController::class, 'searchByDci']);
+    Route::get('search-medicament/{tableau}', [MedicamentController::class, 'searchByTableau']);
+    Route::get('search-medicament/{forme}', [MedicamentController::class, 'searchByForme']);
+    Route::get('search-medicament/{dosage}', [MedicamentController::class, 'searchByDosage']);
+    Route::get('search-medicament/{classe_therapeutique}', [MedicamentController::class, 'searchByClasseT']);
+    Route::get('search-medicament/{posologie}', [MedicamentController::class, 'searchByPosologie']);
+
+
 
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -46,7 +64,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('update-pharmacie/{id}', [PharmacieController::class, 'update']);
     Route::delete('delete-pharmacie/{id}', [PharmacieController::class, 'delete']);
     //Route::delete('delete-pharmacie/{id}', [PharmacieController::class, 'delete']);
-    Route::get('search-pharmacie/{pharmacie_nom}', [PharmacieController::class, 'searchByName']);
+    /* Route::get('search-pharmacie/{pharmacie_nom}', [PharmacieController::class, 'searchByName']);
+    Route::get('search-pharmacie/{pharmacie_adresse}', [PharmacieController::class, 'searchByAdd']);
+    Route::get('search-pharmacie/{pharmacie_numero}', [PharmacieController::class, 'searchByNum']);
+    Route::get('search-pharmacie/{region}', [PharmacieController::class, 'searchByRegion']);
+    Route::get('search-pharmacie/{commune}', [PharmacieController::class, 'searchByCommune']);
+    Route::get('search-pharmacie/{department}', [PharmacieController::class, 'searchByDep']);
+ */
     /* Route::get('list_all/{sk,tk}', [PharmacieController::class, 'listAll']);
     Route::get('retriv', [PharmacieController::class, 'retrivAll']); */
 
@@ -54,7 +78,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('edit-medicament/{id}', [MedicamentController::class, 'edit']);
     Route::put('update-medicament/{id}', [MedicamentController::class, 'update']);
     Route::delete('delete-medicament/{id}', [MedicamentController::class, 'delete']);
-    Route::get('search-medicament/{nom_medicament}', [MedicamentController::class, 'searchByName']);
+   /*  Route::get('search-medicament/{nom_medicament}', [MedicamentController::class, 'searchByName']);
+    Route::get('search-medicament/{DCI}', [MedicamentController::class, 'searchByDci']);
+    Route::get('search-medicament/{tableau}', [MedicamentController::class, 'searchByTableau']);
+    Route::get('search-medicament/{forme}', [MedicamentController::class, 'searchByForme']);
+    Route::get('search-medicament/{dosage}', [MedicamentController::class, 'searchByDosage']);
+    Route::get('search-medicament/{classe_therapeutique}', [MedicamentController::class, 'searchByClasseT']);
+    Route::get('search-medicament/{posologie}', [MedicamentController::class, 'searchByPosologie']); */
     Route::get('search', [MedicamentController::class, 'searchByAll']);
 
 
